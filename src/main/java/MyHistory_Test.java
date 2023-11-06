@@ -1,26 +1,31 @@
+
+
+import org.junit.Test;
 import org.junit.jupiter.api.io.TempDir;
+
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class MyHistory_Test {
+
+public class MyHistory_Test {
 
 
     @TempDir
     private Path tmpDir;
 
-    @org.junit.jupiter.api.Test
-    void read_test1() throws IOException {
+    @Test
+    public void read_test1() throws IOException {
         MyHistory h = new MyHistory(tmpDir + "\\abcd.data");
 
         assertThrows(IOException.class, h::read);
     }
 
-    @org.junit.jupiter.api.Test
-    void read_test2() throws IOException {
+    @Test
+    public void read_test2() throws IOException {
         MyHistory h = new MyHistory(tmpDir + "\\abcd.data");
         File f = new File(tmpDir + "\\abcd.data");
         
@@ -28,8 +33,8 @@ class MyHistory_Test {
     }
 
 
-    @org.junit.jupiter.api.Test
-    void addLine_test1() {
+    @Test
+    public void addLine_test1() {
         MyHistory h = new MyHistory("abcd");
         h.addLine("a");
 
@@ -37,8 +42,8 @@ class MyHistory_Test {
     }
 
 
-    @org.junit.jupiter.api.Test
-    void addLine_test2() {
+    @Test
+    public void addLine_test2() {
         MyHistory h = new MyHistory("abcd");
         h.addLine("a");
         h.addLine("a");
@@ -47,8 +52,8 @@ class MyHistory_Test {
         assertEquals("a\n", h.toString());
     }
 
-    @org.junit.jupiter.api.Test
-    void addLine_test3() {
+    @Test
+    public void addLine_test3() {
         MyHistory h = new MyHistory("abcd");
         h.addLine("a");
         h.addLine("b");
@@ -57,8 +62,8 @@ class MyHistory_Test {
         assertEquals("a\nb\nc\n", h.toString());
     }
 
-    @org.junit.jupiter.api.Test
-    void save_test() {
+    @Test
+    public void save_test() {
         MyHistory h = new MyHistory(tmpDir + "abcd");
 
 
